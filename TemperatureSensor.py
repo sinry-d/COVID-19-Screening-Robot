@@ -19,10 +19,15 @@ sensor = MLX90614(bus, address=0x5A)
 wristTemp = sensor.get_obj_temp()
 #print (sensor.get_amb_temp()) #Prints environment temperature to the console
 #print (sensor.get_obj_temp()) #Prints object temperature to the console
-#Retakes temperature if the temperature is not in a valid human range
+#Retakes temperature if the temperature is not in a valid human range to a maximum of 100 times
 #Note: Less than 31*C and greater than 43*C often results in death
-while wristTemp>31 and wristTemp<43:
+counter = 100
+while wristTemp>31 and wristTemp<43 and counter>0:
+    print("Please move your wrist in front of the sensor\n")
     wristTemp = sensor.get_obj_temp()
+    counter = counter-1 
+    #delay each loop by 3 seconds
+    time.sleep(3) 
 #After taking a reasonable temperature, checks to see if the person can enter
 if(wristTemp<36.1):
     print("Temperature too low: ", wristTemp, " *C \n")
