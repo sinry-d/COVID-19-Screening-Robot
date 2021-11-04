@@ -16,6 +16,8 @@ import time
 import cv2
 import os
 
+
+# hello thia is lina
 def detect_and_predict_mask(frame, faceNet, maskNet):
 	# grab the dimensions of the frame and then construct a blob
 	# from it
