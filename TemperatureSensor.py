@@ -32,7 +32,7 @@ while wristTemp<31 and wristTemp>43 and counter>0:
 if(wristTemp<36.1):
     print("Temperature too low: ", wristTemp, " *C \n")
     print("You may enter, but consider getting that checked out\n")
-elif(wristTemp>37.2):
+elif(wristTemp>37.8):
     print("Your temperature is too high: ", wristTemp, " *C\n")
     print("Please stay where you are until someone comes to assist you\n")
     #Gets current time
