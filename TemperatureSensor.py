@@ -16,15 +16,15 @@ from mlx90614 import MLX90614
 bus = SMBus(1)
 #Note: Address should be checked using $ sudo i2cdetect -y 1
 sensor = MLX90614(bus, address=0x5A)
-wristTemp = sensor.get_obj_temp()
+wristTemp = sensor.get_object_1()
 #print (sensor.get_amb_temp()) #Prints environment temperature to the console
-#print (sensor.get_obj_temp()) #Prints object temperature to the console
+#print (sensor.get_object_1()) #Prints object temperature to the console
 #Retakes temperature if the temperature is not in a valid human range to a maximum of 100 times
 #Note: Less than 31*C and greater than 43*C often results in death
 counter = 100
 while wristTemp<31 and wristTemp>43 and counter>0:
     print("Please move your wrist in front of the sensor\n")
-    wristTemp = sensor.get_obj_temp()
+    wristTemp = sensor.get_object_1()
     counter = counter-1 
     #delay each loop by 3 seconds
     time.sleep(3) 
