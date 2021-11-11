@@ -3,15 +3,15 @@ import time
 from smbus2 import SMBus
 from mlx90614 import MLX90614 
 
-from notifypy import Notify
+# from notifypy import Notify
 
 #Default notification settings for texts to your phone
-notification = Notify(
-  default_notification_title="Covid-Robot Alert",
-  # default_application_name="Great Application",
-  # default_notification_icon="path/to/icon.png",
-  # default_notification_audio="path/to/sound.wav"
-)
+# notification = Notify(
+#   default_notification_title="Covid-Robot Alert",
+#   # default_application_name="Great Application",
+#   # default_notification_icon="path/to/icon.png",
+#   # default_notification_audio="path/to/sound.wav"
+# )
 
 bus = SMBus(1)
 #Note: Address should be checked using $ sudo i2cdetect -y 1
