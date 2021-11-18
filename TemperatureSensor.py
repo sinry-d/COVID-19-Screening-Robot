@@ -39,8 +39,8 @@ elif(wristTemp>37.8):
     t = time.localtime()
     timeNow = time.strftime("%H:%M:%S", t)
     #Alerts manager via phone notifications if the customer has a fever
-    notification.message = "Customer temperature too high, please address immediately ", timeNow," EST"
-    notification.send()
+    #notification.message = "Customer temperature too high, please address immediately ", timeNow," EST"
+    #notification.send()
 else:
     print("Your temperature is: ", wristTemp," *C\n")
     print("Thanks for cooperating with us, you may enter\n")
