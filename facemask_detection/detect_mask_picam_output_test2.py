@@ -157,6 +157,7 @@ while True:
 			red.on()
 			hasMask = False
 			no_mask_counter += 1
+			
 		if has_mask_counter > 3 or no_mask_counter > 10:
 			print("we will break this loop")
 			break
@@ -166,6 +167,10 @@ while True:
 		cv2.putText(frame, label, (startX-50, startY - 10),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
 		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
+
+	if has_mask_counter > 3 or no_mask_counter > 10:
+		print("we will break this loop")
+		break
 
 	# show the output frame
 	cv2.imshow("Face Mask Detector", frame)
