@@ -24,6 +24,7 @@ wristTemp = sensor.get_object_1()
 counter = 100
 print("Please move your wrist in front of the sensor\n")
 while (wristTemp<31 or wristTemp>43) and counter>0:
+    print(".")
     wristTemp = sensor.get_object_1()
     counter = counter-1 
     #delay each loop by 3 seconds
