@@ -27,7 +27,7 @@ while wristTemp<31 and wristTemp>43 and counter>0:
     wristTemp = sensor.get_object_1()
     counter = counter-1 
     #delay each loop by 3 seconds
-    time.sleep(3) 
+    time.sleep(1) 
 #After taking a reasonable temperature, checks to see if the person can enter
 if(wristTemp<36.1):
     print("Temperature too low: ", wristTemp, " *C \n")
