@@ -22,12 +22,12 @@ wristTemp = sensor.get_object_1()
 #Retakes temperature if the temperature is not in a valid human range to a maximum of 100 times
 #Note: Less than 31*C and greater than 43*C often results in death
 counter = 100
+print("Please move your wrist in front of the sensor\n")
 while (wristTemp<31 or wristTemp>43) and counter>0:
-    print("Please move your wrist in front of the sensor\n")
     wristTemp = sensor.get_object_1()
     counter = counter-1 
     #delay each loop by 3 seconds
-    time.sleep(1) 
+    time.sleep(2) 
 #After taking a reasonable temperature, checks to see if the person can enter
 if(wristTemp<36.1):
     print("Temperature too low: ", wristTemp, " *C \n")
