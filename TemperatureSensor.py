@@ -24,18 +24,17 @@ wristTemp = sensor.get_object_1()
 counter = 100
 print("Please move your wrist in front of the sensor\n")
 print ("Ambient Temperature :", sensor.get_ambient())
-while (wristTemp<31 or wristTemp>43) and counter>0:
+while (wristTemp<26 or wristTemp>43) and counter>0:
     print(".")
-    print()
     wristTemp = sensor.get_object_1()
     counter = counter-1 
     #delay each loop by 3 seconds
     time.sleep(2) 
 #After taking a reasonable temperature, checks to see if the person can enter
-if(wristTemp<36.1):
+if(wristTemp<30):
     print("Temperature too low: ", wristTemp, " *C \n")
     print("You may enter, but consider getting that checked out\n")
-elif(wristTemp>37.8):
+elif(wristTemp>36):
     print("Your temperature is too high: ", wristTemp, " *C\n")
     print("Please stay where you are until someone comes to assist you\n")
     #Gets current time
