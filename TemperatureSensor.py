@@ -23,8 +23,10 @@ wristTemp = sensor.get_object_1()
 #Note: Less than 31*C and greater than 43*C often results in death
 counter = 100
 print("Please move your wrist in front of the sensor\n")
+print ("Ambient Temperature :", sensor.get_ambient())
 while (wristTemp<31 or wristTemp>43) and counter>0:
     print(".")
+    print()
     wristTemp = sensor.get_object_1()
     counter = counter-1 
     #delay each loop by 3 seconds
