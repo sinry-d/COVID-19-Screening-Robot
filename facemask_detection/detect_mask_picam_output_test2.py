@@ -121,7 +121,7 @@ no_mask_counter = 0
 
 #if they have a mask for 3 cycles you can confirm that they have a mask
 #if they dont have a mask for 10 cycles then ask them to leave
-while has_mask_counter < 3 or no_mask_counter < 10:
+while True:
 	# grab the frame from the threaded video stream and resize it
 	# to have a maximum width of 400 pixels
 	frame = vs.read()
@@ -157,6 +157,8 @@ while has_mask_counter < 3 or no_mask_counter < 10:
 			red.on()
 			hasMask = False
 			no_mask_counter += 1
+		if has_mask_counter > 3 or no_mask_counter > 10:
+			break
 		
 		# display the label and bounding box rectangle on the output
 		# frame
