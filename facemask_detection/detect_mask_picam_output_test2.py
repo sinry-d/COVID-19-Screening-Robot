@@ -158,6 +158,7 @@ while True:
 			hasMask = False
 			no_mask_counter += 1
 		if has_mask_counter > 3 or no_mask_counter > 10:
+			print("we will break this loop")
 			break
 		
 		# display the label and bounding box rectangle on the output
