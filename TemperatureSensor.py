@@ -7,8 +7,9 @@ from mlx90614 import MLX90614
 from notify_run import Notify
 
 #Default notification settings for texts to your phone
-notification = Notify
-
+notify = Notify(endpoint="https://notify.run/hPa9ESszlWgPxU2wGm3c")
+#notify.register()
+notify.send('Hello')
 
 bus = SMBus(1)
 yellow = LED(14)
@@ -34,7 +35,7 @@ t = time.localtime()
 timeNow = time.strftime("%H:%M:%S", t)
 
 #notification.message = "Testing: ", timeNow," EST"
-notification.send('Hello')
+#notify.send('Hello')
 if(wristTemp<30):
     yellow.on()
     print("Temperature too low: ", wristTemp, " *C \n")
