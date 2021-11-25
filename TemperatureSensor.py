@@ -8,12 +8,7 @@ from notify_run import Notify
 
 #Default notification settings for texts to your phone
 notification = Notify
-(
-   default_notification_title="Covid-Robot Alert",
-   # default_application_name="Great Application",
-   # default_notification_icon="path/to/icon.png",
-   # default_notification_audio="path/to/sound.wav"
- )
+
 
 bus = SMBus(1)
 yellow = LED(14)
