@@ -1,11 +1,8 @@
 import detect_mask
-import TemperatureSensor
 
-exec(open('detect_mask.py').read())
 print (detect_mask.mask_on)
 
+import TemperatureSensor
 
+print (TemperatureSensor.)
 
-if __name__ == "__main__":
-    ans = mask_on
-    print(ans)

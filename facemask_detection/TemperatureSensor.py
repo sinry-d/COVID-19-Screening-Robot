@@ -16,6 +16,9 @@ wristTemp = sensor.get_object_1()
 #Retakes temperature if the temperature is not in a valid human range to a maximum of 100 times
 #Note: Less than 31*C and greater than 43*C often results in death
 counter = 100
+
+#for the main function to read
+safe_temp = False
 print("Please move your wrist in front of the sensor\n")
 print ("Ambient Temperature :", sensor.get_ambient())
 while (wristTemp<26 or wristTemp>43) and counter>0:
@@ -33,15 +36,18 @@ if(wristTemp<30):
     yellow.on()
     print("Temperature too low: ", wristTemp, " *C \n")
     print("You may enter, but consider getting that checked out\n")
+    safeTemp = True
     notify.send('Temperature: '+str(wristTemp)+'*C '+timeNow+'EST')
 elif(wristTemp>36):
     print("Your temperature is too high: ", wristTemp, " *C\n")
     print("Please stay where you are until someone comes to assist you\n")
+    safe_temp = False
     notify.send('TEMP ALERT: ADDRESS IMMEDIATELY: Temperature: '+str(wristTemp)+'*C '+timeNow+'EST')
 else:
     yellow.on()
     print("Your temperature is: ", wristTemp," *C\n")
     print("Thanks for cooperating with us, you may enter\n")
+    safe_temp = True
     notify.send('Temperature: '+str(wristTemp)+'*C '+timeNow+'EST')
 time.sleep(5)
 bus.close()
