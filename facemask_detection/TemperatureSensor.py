@@ -37,7 +37,7 @@ def tempsensor():
         yellow.on()
         print("Temperature too low: ", wristTemp, " *C \n")
         print("You may enter, but consider getting that checked out\n")
-        safeTemp = True
+        safe_temp = True
         notify.send('Temperature: '+str(wristTemp)+'*C '+timeNow+'EST')
     elif(wristTemp>36):
         print("Your temperature is too high: ", wristTemp, " *C\n")
