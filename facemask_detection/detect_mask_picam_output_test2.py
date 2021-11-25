@@ -160,7 +160,7 @@ while True:
 			no_mask_counter += 1
 			print ("has no mask", no_mask_counter)
 			
-		if has_mask_counter > 3 or no_mask_counter > 10:
+		if has_mask_counter > 1 or no_mask_counter > 2:
 			print("the has_mask_counter has exeeded > 3 or the no_mask_counter has exeeded > 10")
 			print("we will break this loop")
 			break
@@ -171,10 +171,10 @@ while True:
 			cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
 		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 
-	if has_mask_counter > 3 or no_mask_counter > 10:
+	#stops the camera feed and face mask detection to free up memory
+	if has_mask_counter > 1 or no_mask_counter > 2:
 		print("the has_mask_counter has exeeded > 3 or the no_mask_counter has exeeded > 10")
 		print("we will break this loop")
-		break
 		break
 
 	# show the output frame
