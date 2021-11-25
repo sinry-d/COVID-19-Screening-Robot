@@ -21,7 +21,6 @@ def tempsensor():
     #for the main function to read
     safe_temp = False
     print("Please move your wrist in front of the sensor\n")
-    print ("Ambient Temperature :", sensor.get_ambient())
     while (wristTemp<26 or wristTemp>43) and counter>0:
         wristTemp = sensor.get_object_1()
         counter = counter-1 
