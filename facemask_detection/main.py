@@ -2,6 +2,7 @@ import detect_mask
 import TemperatureSensor
 
 exec(open('detect_mask.py').read())
+print (detect_mask.mask_on)
 
 
 
