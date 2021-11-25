@@ -1,5 +1,5 @@
-import facemask_detection
-#import TemperatureSensor
+import detect_mask
+import TemperatureSensor
 
 exec(open('detect_mask.py').read())
 
