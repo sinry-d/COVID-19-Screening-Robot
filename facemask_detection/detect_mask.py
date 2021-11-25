@@ -17,7 +17,7 @@ import os
 # os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 
 
-def detect_and_predict_mask(frame, faceNet, maskNet):
+def detect_and_predict_mask(frame, faceNet, maskNet,args):
 	# grab the dimensions of the frame and then construct a blob
 	# from it
 	(h, w) = frame.shape[:2]
@@ -130,7 +130,7 @@ def detectmask():
 
 		# detect faces in the frame and determine if they are wearing a
 		# face mask or not
-		(locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
+		(locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet,args)
 
 
 		# loop over the detected face locations and their corresponding
