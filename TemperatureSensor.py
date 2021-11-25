@@ -34,7 +34,7 @@ t = time.localtime()
 timeNow = time.strftime("%H:%M:%S", t)
 
 #notification.message = "Testing: ", timeNow," EST"
-notification.send("Hello"); 
+notification.send('Hello')
 if(wristTemp<30):
     yellow.on()
     print("Temperature too low: ", wristTemp, " *C \n")
