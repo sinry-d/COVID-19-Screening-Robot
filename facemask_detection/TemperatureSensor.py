@@ -20,7 +20,7 @@ def tempsensor():
 
     #for the main function to read
     safe_temp = False
-    print("Please move your wrist in front of the sensor\n")
+    print("Please move your wrist in front of the sensor")
     while (wristTemp<26 or wristTemp>43) and counter>0:
         wristTemp = sensor.get_object_1()
         counter = counter-1 
@@ -35,7 +35,7 @@ def tempsensor():
     if(wristTemp<30):
         yellow.on()
         print("Temperature too low: ", wristTemp, " *C \n")
-        print("You may enter, but consider getting that checked out\n")
+        print("You may enter, but your temperature is slightly low\n")
         safe_temp = True
         notify.send('Temperature: '+str(wristTemp)+'*C '+timeNow+'EST')
     elif(wristTemp>36):

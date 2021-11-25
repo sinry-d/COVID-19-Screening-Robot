@@ -11,8 +11,8 @@ while True:
     if maskon == True:
         goodtemp = TemperatureSensor.tempsensor()
 
-    print ("temp good:",goodtemp)
-    print ("mask good:", maskon)
+    # print ("temp good:",goodtemp)
+    # print ("mask good:", maskon)
 
     if (maskon and goodtemp):
         if (current_capacity==max_capacity):
