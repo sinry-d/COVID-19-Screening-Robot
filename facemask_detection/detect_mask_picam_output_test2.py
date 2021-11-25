@@ -118,6 +118,7 @@ hasMask = False
 
 has_mask_counter = 0
 no_mask_counter = 0
+mask_on = False
 
 #if they have a mask for 3 cycles you can confirm that they have a mask
 #if they dont have a mask for 10 cycles then ask them to leave
@@ -160,8 +161,13 @@ while True:
 			no_mask_counter += 1
 			print ("has no mask", no_mask_counter)
 			
-		if has_mask_counter > 1 or no_mask_counter > 2:
-			print("the has_mask_counter has exeeded > 3 or the no_mask_counter has exeeded > 10")
+		if has_mask_counter > 1:
+			mask_on = True
+			print("the has_mask_counter has exeeded > 1")
+			print("we will break this loop")
+			break
+		elif no_mask_counter >2:
+			print("no_mask_counter has exeeded > 2")
 			print("we will break this loop")
 			break
 		
@@ -172,8 +178,13 @@ while True:
 		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 
 	#stops the camera feed and face mask detection to free up memory
-	if has_mask_counter > 1 or no_mask_counter > 2:
-		print("the has_mask_counter has exeeded > 3 or the no_mask_counter has exeeded > 10")
+	if has_mask_counter > 1:
+		mask_on = True
+		print("the has_mask_counter has exeeded > 1")
+		print("we will break this loop")
+		break
+	elif no_mask_counter >2:
+		print("no_mask_counter has exeeded > 2")
 		print("we will break this loop")
 		break
 
