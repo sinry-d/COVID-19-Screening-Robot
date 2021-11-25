@@ -4,15 +4,15 @@ from gpiozero import LED
 from smbus2 import SMBus
 from mlx90614 import MLX90614 
 
-# from notifypy import Notify
+from notifypy import Notify
 
 #Default notification settings for texts to your phone
-# notification = Notify(
-#   default_notification_title="Covid-Robot Alert",
-#   # default_application_name="Great Application",
-#   # default_notification_icon="path/to/icon.png",
-#   # default_notification_audio="path/to/sound.wav"
-# )
+notification = Notify(
+   default_notification_title="Covid-Robot Alert",
+   # default_application_name="Great Application",
+   # default_notification_icon="path/to/icon.png",
+   # default_notification_audio="path/to/sound.wav"
+ )
 
 bus = SMBus(1)
 yellow = LED(14)
@@ -34,6 +34,10 @@ while (wristTemp<26 or wristTemp>43) and counter>0:
     time.sleep(1) 
 #After taking a reasonable temperature, checks to see if the person can enter
 print("")
+t = time.localtime()
+timeNow = time.strftime("%H:%M:%S", t)
+notification.message = "Testing: ", timeNow," EST"
+notification.send()
 if(wristTemp<30):
     yellow.on()
     print("Temperature too low: ", wristTemp, " *C \n")
@@ -42,8 +46,8 @@ elif(wristTemp>36):
     print("Your temperature is too high: ", wristTemp, " *C\n")
     print("Please stay where you are until someone comes to assist you\n")
     #Gets current time
-    t = time.localtime()
-    timeNow = time.strftime("%H:%M:%S", t)
+    #t = time.localtime()
+    #timeNow = time.strftime("%H:%M:%S", t)
     #Alerts manager via phone notifications if the customer has a fever
     #notification.message = "Customer temperature too high, please address immediately ", timeNow," EST"
     #notification.send()
