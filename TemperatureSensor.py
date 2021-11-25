@@ -34,6 +34,8 @@ while (wristTemp<26 or wristTemp>43) and counter>0:
     time.sleep(1) 
 #After taking a reasonable temperature, checks to see if the person can enter
 print("")
+t = time.localtime()
+timeNow = time.strftime("%H:%M:%S", t)
 notification.message = "Testing: ", timeNow," EST"
 notification.send()
 if(wristTemp<30):
@@ -44,11 +46,11 @@ elif(wristTemp>36):
     print("Your temperature is too high: ", wristTemp, " *C\n")
     print("Please stay where you are until someone comes to assist you\n")
     #Gets current time
-    t = time.localtime()
-    timeNow = time.strftime("%H:%M:%S", t)
+    #t = time.localtime()
+    #timeNow = time.strftime("%H:%M:%S", t)
     #Alerts manager via phone notifications if the customer has a fever
-    notification.message = "Customer temperature too high, please address immediately ", timeNow," EST"
-    notification.send()
+    #notification.message = "Customer temperature too high, please address immediately ", timeNow," EST"
+    #notification.send()
 else:
     yellow.on()
     print("Your temperature is: ", wristTemp," *C\n")
