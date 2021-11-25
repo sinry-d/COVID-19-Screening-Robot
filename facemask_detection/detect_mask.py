@@ -18,8 +18,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 
 tf.logging.set_verbosity(tf.logging.ERROR)
 
-import warnings
-warnings.filterwarning
 
 def detect_and_predict_mask(frame, faceNet, maskNet):
 	# grab the dimensions of the frame and then construct a blob
