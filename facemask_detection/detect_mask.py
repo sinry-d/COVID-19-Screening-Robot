@@ -10,7 +10,7 @@ import time
 import cv2
 import os
 
-import tensorflow.python.util.deprecation as deprecation
+from tensorflow.python.util import deprecation
 deprecation._PRINT_DEPRECATION_WARNINGS = False
 import os
 import tensorflow as tf
