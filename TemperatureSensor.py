@@ -1,12 +1,10 @@
 import time
 from gpiozero import LED
-
 from smbus2 import SMBus
 from mlx90614 import MLX90614 
-
 from notify_run import Notify
 
-#Default notification settings for texts to your phone
+#Set up notify run channel
 notify = Notify(endpoint="https://notify.run/hPa9ESszlWgPxU2wGm3c")
 
 bus = SMBus(1)
@@ -35,21 +33,15 @@ if(wristTemp<30):
     yellow.on()
     print("Temperature too low: ", wristTemp, " *C \n")
     print("You may enter, but consider getting that checked out\n")
-    notify.send('Temperature: '+str(wristTemp)+' '+timeNow+' EST')
+    notify.send('Temperature: '+str(wristTemp)+'*C '+timeNow+'EST')
 elif(wristTemp>36):
     print("Your temperature is too high: ", wristTemp, " *C\n")
     print("Please stay where you are until someone comes to assist you\n")
-    notify.send('TEMP ALERT: ADDRESS IMMEDIATELY: Temperature: '+str(wristTemp)+' '+timeNow+' EST')
-    #Gets current time
-    #t = time.localtime()
-    #timeNow = time.strftime("%H:%M:%S", t)
-    #Alerts manager via phone notifications if the customer has a fever
-    #notification.message = "Customer temperature too high, please address immediately ", timeNow," EST"
-    #notification.send()
+    notify.send('TEMP ALERT: ADDRESS IMMEDIATELY: Temperature: '+str(wristTemp)+'*C '+timeNow+'EST')
 else:
     yellow.on()
     print("Your temperature is: ", wristTemp," *C\n")
     print("Thanks for cooperating with us, you may enter\n")
-    notify.send('Temperature: '+str(wristTemp)+' '+timeNow+' EST')
+    notify.send('Temperature: '+str(wristTemp)+'*C '+timeNow+'EST')
 time.sleep(5)
 bus.close()
