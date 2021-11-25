@@ -10,11 +10,11 @@ import time
 import cv2
 import os
 
-# from tensorflow.python.util import deprecation
-# deprecation._PRINT_DEPRECATION_WARNINGS = False
-# import os
-# import tensorflow as tf
-# os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
+from tensorflow.python.util import deprecation
+deprecation._PRINT_DEPRECATION_WARNINGS = False
+import os
+import tensorflow as tf
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 
 
 def detect_and_predict_mask(frame, faceNet, maskNet,args):
@@ -154,16 +154,11 @@ def detectmask():
 				hasMask = False
 				no_mask_counter += 1
 				print ("has no mask", no_mask_counter)
-				
+			
+			#if (not) wearing a mask is confirmed, break the for
 			if has_mask_counter > 1:
-				mask_on = True
-				print("the has_mask_counter has exeeded > 1")
-				print("we will break this loop")
 				break
 			elif no_mask_counter >2:
-				mask_on = False
-				print("no_mask_counter has exeeded > 2")
-				print("we will break this loop")
 				break
 			
 			# display the label and bounding box rectangle on the output
@@ -171,6 +166,17 @@ def detectmask():
 			cv2.putText(frame, label, (startX-50, startY - 10),
 				cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
 			cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
+		
+		if has_mask_counter > 1:
+			mask_on = True
+			print("the has_mask_counter has exeeded > 1")
+			print("we will break this loop")
+			break
+		elif no_mask_counter >2:
+			mask_on = False
+			print("no_mask_counter has exeeded > 2")
+			print("we will break this loop")
+			break
 
 
 		# show the output frame
