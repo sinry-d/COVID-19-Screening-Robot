@@ -78,82 +78,100 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 	# locations
 	return (locs, preds)
 
-# construct the argument parser and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-f", "--face", type=str,
-	default="face_detector",
-	help="path to face detector model directory")
-ap.add_argument("-m", "--model", type=str,
-	default="mask_detector.model",
-	help="path to trained face mask detector model")
-ap.add_argument("-c", "--confidence", type=float, default=0.5,
-	help="minimum probability to filter weak detections")
-args = vars(ap.parse_args())
+def detectmask():
+	# construct the argument parser and parse the arguments
+	ap = argparse.ArgumentParser()
+	ap.add_argument("-f", "--face", type=str,
+		default="face_detector",
+		help="path to face detector model directory")
+	ap.add_argument("-m", "--model", type=str,
+		default="mask_detector.model",
+		help="path to trained face mask detector model")
+	ap.add_argument("-c", "--confidence", type=float, default=0.5,
+		help="minimum probability to filter weak detections")
+	args = vars(ap.parse_args())
 
-# load our serialized face detector model from disk
-print("[INFO] loading face detector model...")
-prototxtPath = os.path.sep.join([args["face"], "deploy.prototxt"])
-weightsPath = os.path.sep.join([args["face"],
-	"res10_300x300_ssd_iter_140000.caffemodel"])
-faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
+	# load our serialized face detector model from disk
+	print("[INFO] loading face detector model...")
+	prototxtPath = os.path.sep.join([args["face"], "deploy.prototxt"])
+	weightsPath = os.path.sep.join([args["face"],
+		"res10_300x300_ssd_iter_140000.caffemodel"])
+	faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 
-# load the face mask detector model from disk
-print("[INFO] loading face mask detector model...")
-maskNet = load_model(args["model"])
+	# load the face mask detector model from disk
+	print("[INFO] loading face mask detector model...")
+	maskNet = load_model(args["model"])
 
-# initialize the video stream and allow the camera sensor to warm up
-print("[INFO] starting video stream...")
-#vs = VideoStream(src=0).start()
-vs = VideoStream(usePiCamera=True).start()
-time.sleep(2.0)
+	# initialize the video stream and allow the camera sensor to warm up
+	print("[INFO] starting video stream...")
+	#vs = VideoStream(src=0).start()
+	vs = VideoStream(usePiCamera=True).start()
+	time.sleep(2.0)
 
-hasMask = False
+	hasMask = False
 
-# loop over the frames from the video stream
-#kimmy - turn off completely after 3 confirmations that the mask is on
-#if not wearing a mask for 3 confirmations turn off and say go away
-#but time for no mask takes longer incase they move or is not detected
-#maybe have a buffer time before turning on so the person in front of you can leave?
+	# loop over the frames from the video stream
+	#kimmy - turn off completely after 3 confirmations that the mask is on
+	#if not wearing a mask for 3 confirmations turn off and say go away
+	#but time for no mask takes longer incase they move or is not detected
+	#maybe have a buffer time before turning on so the person in front of you can leave?
 
-has_mask_counter = 0
-no_mask_counter = 0
-mask_on = False
+	has_mask_counter = 0
+	no_mask_counter = 0
+	mask_on = False
 
-#if they have a mask for 3 cycles you can confirm that they have a mask
-#if they dont have a mask for 10 cycles then ask them to leave
-while True:
-	# grab the frame from the threaded video stream and resize it
-	# to have a maximum width of 400 pixels
-	frame = vs.read()
-	frame = imutils.resize(frame, width=500)
+	#if they have a mask for 3 cycles you can confirm that they have a mask
+	#if they dont have a mask for 10 cycles then ask them to leave
+	while True:
+		# grab the frame from the threaded video stream and resize it
+		# to have a maximum width of 400 pixels
+		frame = vs.read()
+		frame = imutils.resize(frame, width=500)
 
-	# detect faces in the frame and determine if they are wearing a
-	# face mask or not
-	(locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
+		# detect faces in the frame and determine if they are wearing a
+		# face mask or not
+		(locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
 
 
-	# loop over the detected face locations and their corresponding
-	# locations
-	for (box, pred) in zip(locs, preds):
-		# unpack the bounding box and predictions
-		(startX, startY, endX, endY) = box
-		(mask, withoutMask) = pred
+		# loop over the detected face locations and their corresponding
+		# locations
+		for (box, pred) in zip(locs, preds):
+			# unpack the bounding box and predictions
+			(startX, startY, endX, endY) = box
+			(mask, withoutMask) = pred
 
-		# determine the class label and color we'll use to draw
-		# the bounding box and text
-		if mask > withoutMask:
-			label = "Thank You. Mask On."
-			color = (0, 255, 0)
-			hasMask = True
-			has_mask_counter += 1
-			print("has mask", has_mask_counter)
-		else:
-			label = "No Face Mask Detected"
-			color = (0, 0, 255)
-			hasMask = False
-			no_mask_counter += 1
-			print ("has no mask", no_mask_counter)
+			# determine the class label and color we'll use to draw
+			# the bounding box and text
+			if mask > withoutMask:
+				label = "Thank You. Mask On."
+				color = (0, 255, 0)
+				hasMask = True
+				has_mask_counter += 1
+				print("has mask", has_mask_counter)
+			else:
+				label = "No Face Mask Detected"
+				color = (0, 0, 255)
+				hasMask = False
+				no_mask_counter += 1
+				print ("has no mask", no_mask_counter)
+				
+			if has_mask_counter > 1:
+				mask_on = True
+				print("the has_mask_counter has exeeded > 1")
+				print("we will break this loop")
+				break
+			elif no_mask_counter >2:
+				print("no_mask_counter has exeeded > 2")
+				print("we will break this loop")
+				break
 			
+			# display the label and bounding box rectangle on the output
+			# frame
+			cv2.putText(frame, label, (startX-50, startY - 10),
+				cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
+			cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
+
+		#stops the camera feed and face mask detection to free up memory
 		if has_mask_counter > 1:
 			mask_on = True
 			print("the has_mask_counter has exeeded > 1")
@@ -163,34 +181,17 @@ while True:
 			print("no_mask_counter has exeeded > 2")
 			print("we will break this loop")
 			break
+
+		# show the output frame
+		cv2.imshow("Face Mask Detector", frame)
+		key = cv2.waitKey(1) & 0xFF
 		
-		# display the label and bounding box rectangle on the output
-		# frame
-		cv2.putText(frame, label, (startX-50, startY - 10),
-			cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
-		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
+		# if the `q` key was pressed, break from the loop
+		if key == ord("q"):
+			break
 
-	#stops the camera feed and face mask detection to free up memory
-	if has_mask_counter > 1:
-		mask_on = True
-		print("the has_mask_counter has exeeded > 1")
-		print("we will break this loop")
-		break
-	elif no_mask_counter >2:
-		print("no_mask_counter has exeeded > 2")
-		print("we will break this loop")
-		break
+	#do we need to return the hasMask value to the main function?
 
-	# show the output frame
-	cv2.imshow("Face Mask Detector", frame)
-	key = cv2.waitKey(1) & 0xFF
-	
-	# if the `q` key was pressed, break from the loop
-	if key == ord("q"):
-		break
-
-#do we need to return the hasMask value to the main function?
-
-# do a bit of cleanup
-cv2.destroyAllWindows()
-vs.stop()
+	# do a bit of cleanup
+	cv2.destroyAllWindows()
+	vs.stop()
