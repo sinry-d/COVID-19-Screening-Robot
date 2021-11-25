@@ -50,5 +50,7 @@ def tempsensor():
         print("Thanks for cooperating with us, you may enter\n")
         safe_temp = True
         notify.send('Temperature: '+str(wristTemp)+'*C '+timeNow+'EST')
+    
     time.sleep(5)
     bus.close()
+    return safe_temp

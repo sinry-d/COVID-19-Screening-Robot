@@ -159,11 +159,14 @@ def detectmask():
 				mask_on = True
 				print("the has_mask_counter has exeeded > 1")
 				print("we will break this loop")
-				break
+				return mask_on
+				#break
 			elif no_mask_counter >2:
+				mask_on = False
 				print("no_mask_counter has exeeded > 2")
 				print("we will break this loop")
-				break
+				return mask_on
+				#break
 			
 			# display the label and bounding box rectangle on the output
 			# frame
@@ -171,16 +174,6 @@ def detectmask():
 				cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
 			cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 
-		#stops the camera feed and face mask detection to free up memory
-		if has_mask_counter > 1:
-			mask_on = True
-			print("the has_mask_counter has exeeded > 1")
-			print("we will break this loop")
-			break
-		elif no_mask_counter >2:
-			print("no_mask_counter has exeeded > 2")
-			print("we will break this loop")
-			break
 
 		# show the output frame
 		cv2.imshow("Face Mask Detector", frame)
