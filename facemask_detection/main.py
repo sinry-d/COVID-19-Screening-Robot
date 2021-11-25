@@ -6,8 +6,8 @@ current_capacity = 0
 goodtemp = False
 maskon = False
 
-print("------------------------")
-print("\n\n\n\n\n\n\n\n\n\n\nCOVID ROBOT:")
+print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n------------------------")
+print("COVID ROBOT:")
 print("------------------------")
 
 
@@ -15,9 +15,6 @@ while True:
     maskon = detect_mask.detectmask()
     if maskon == True:
         goodtemp = TemperatureSensor.tempsensor()
-
-    # print ("temp good:",goodtemp)
-    # print ("mask good:", maskon)
 
     if (maskon and goodtemp):
         if (current_capacity==max_capacity):
