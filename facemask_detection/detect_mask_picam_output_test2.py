@@ -149,6 +149,7 @@ while True:
 			green.on()
 			hasMask = True
 			has_mask_counter += 1
+			print("has mask", has_mask_counter)
 		else:
 			label = "No Face Mask Detected"
 			color = (0, 0, 255)
@@ -157,6 +158,7 @@ while True:
 			red.on()
 			hasMask = False
 			no_mask_counter += 1
+			print ("has no mask", no_mask_counter)
 			
 		if has_mask_counter > 3 or no_mask_counter > 10:
 			print("we will break this loop")
