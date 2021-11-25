@@ -9,7 +9,7 @@ from notify_run import Notify
 #Default notification settings for texts to your phone
 notify = Notify(endpoint="https://notify.run/hPa9ESszlWgPxU2wGm3c")
 #notify.register()
-notify.send('Hello')
+#notify.send('Hello')
 
 bus = SMBus(1)
 yellow = LED(14)
@@ -37,7 +37,7 @@ timeNow = time.strftime("%H:%M:%S", t)
 wristTemp = round (wristTemp, 2)
 
 #notification.message = "Testing: ", timeNow," EST"
-#notify.send('Hello')
+notify.send('Hello' + timeNow)
 if(wristTemp<30):
     yellow.on()
     print("Temperature too low: ", wristTemp, " *C \n")
