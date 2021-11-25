@@ -53,5 +53,5 @@ else:
     yellow.on()
     print("Your temperature is: ", wristTemp," *C\n")
     print("Thanks for cooperating with us, you may enter\n")
-
+time.sleep(5)
 bus.close()
