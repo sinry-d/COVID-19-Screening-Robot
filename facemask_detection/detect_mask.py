@@ -16,9 +16,11 @@ import time
 import cv2
 import os
 
+import tensorflow as tf
+tf.get_logger().setLevel('INFO')
+
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
-import tensorflow as tf
 
 import warnings
 warnings.filterwarnings("ignore") # suppresses tensorflow warnings
