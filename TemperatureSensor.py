@@ -4,7 +4,7 @@ from gpiozero import LED
 from smbus2 import SMBus
 from mlx90614 import MLX90614 
 
-from notifypy import Notify
+from notify_run import Notify
 
 #Default notification settings for texts to your phone
 notification = Notify(
