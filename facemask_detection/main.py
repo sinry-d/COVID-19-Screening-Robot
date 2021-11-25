@@ -6,6 +6,9 @@ current_capacity = 0
 goodtemp = False
 maskon = False
 
+print("\n\n\n\n\nCOVID ROBOT:")
+
+
 while True:
     maskon = detect_mask.detectmask()
     if maskon == True:
@@ -26,5 +29,7 @@ while True:
         print ("You may not enter")
         maskon = False
         goodtemp = False
+
+    print("\n\n\n")
 
 
