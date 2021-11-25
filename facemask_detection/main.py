@@ -5,5 +5,6 @@ import TemperatureSensor
 goodtemp = TemperatureSensor.tempsensor()
 maskon = detect_mask.detectmask()
 
-print (goodtemp)
+print ("temp good:",goodtemp)
+print ("mask good:", maskon)
 
