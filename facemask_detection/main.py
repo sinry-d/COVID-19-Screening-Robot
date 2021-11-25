@@ -4,5 +4,5 @@ print (detect_mask.mask_on)
 
 import TemperatureSensor
 
-print (TemperatureSensor.)
+print (TemperatureSensor.safe_temp)
 
