@@ -1,8 +1,6 @@
 #initialize buzzer and LEDs
 from gpiozero import Buzzer, LED
-buzzer = Buzzer(21)
-red = LED(14)
-green = LED(15)
+
 
 # import the necessary packages
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
@@ -152,18 +150,12 @@ while True:
 		if mask > withoutMask:
 			label = "Thank You. Mask On."
 			color = (0, 255, 0)
-			buzzer.off()
-			red.off()
-			green.on()
 			hasMask = True
 			has_mask_counter += 1
 			print("has mask", has_mask_counter)
 		else:
 			label = "No Face Mask Detected"
 			color = (0, 0, 255)
-			buzzer.on()
-			green.off()
-			red.on()
 			hasMask = False
 			no_mask_counter += 1
 			print ("has no mask", no_mask_counter)
