@@ -7,6 +7,7 @@ goodtemp = False
 maskon = False
 
 print("\n\n\n\n\nCOVID ROBOT:")
+print("\n\n")
 
 
 while True:
