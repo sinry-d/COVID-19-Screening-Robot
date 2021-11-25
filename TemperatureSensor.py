@@ -8,8 +8,6 @@ from notify_run import Notify
 
 #Default notification settings for texts to your phone
 notify = Notify(endpoint="https://notify.run/hPa9ESszlWgPxU2wGm3c")
-#notify.register()
-#notify.send('Hello')
 
 bus = SMBus(1)
 yellow = LED(14)
@@ -17,8 +15,6 @@ yellow.off()
 #Note: Address should be checked using $ sudo i2cdetect -y 1
 sensor = MLX90614(bus, address=0x5A)
 wristTemp = sensor.get_object_1()
-#print (sensor.get_amb_temp()) #Prints environment temperature to the console
-#print (sensor.get_object_1()) #Prints object temperature to the console
 #Retakes temperature if the temperature is not in a valid human range to a maximum of 100 times
 #Note: Less than 31*C and greater than 43*C often results in death
 counter = 100
@@ -31,9 +27,10 @@ while (wristTemp<26 or wristTemp>43) and counter>0:
     time.sleep(1) 
 #After taking a reasonable temperature, checks to see if the person can enter
 print("")
+wristTemp = round(wristTemp,2)
 t = time.localtime()
 timeNow = time.strftime("%H:%M:%S", t)
-notify.send('Hello '+timeNow+' EST')
+notify.send('Temperature: '+wristTemp+' '+timeNow+' EST')
 if(wristTemp<30):
     yellow.on()
     print("Temperature too low: ", wristTemp, " *C \n")
