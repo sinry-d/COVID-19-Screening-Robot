@@ -25,19 +25,21 @@ while (wristTemp<26 or wristTemp>43) and counter>0:
     counter = counter-1 
     #delay each loop by 3 seconds
     time.sleep(1) 
-#After taking a reasonable temperature, checks to see if the person can enter
 print("")
+#Round wrist temp and find time
 wristTemp = round(wristTemp,2)
 t = time.localtime()
 timeNow = time.strftime("%H:%M:%S", t)
-notify.send('Temperature: '+str(wristTemp)+' '+timeNow+' EST')
+#After taking a reasonable temperature, checks to see if the person can enter
 if(wristTemp<30):
     yellow.on()
     print("Temperature too low: ", wristTemp, " *C \n")
     print("You may enter, but consider getting that checked out\n")
+    notify.send('Temperature: '+str(wristTemp)+' '+timeNow+' EST')
 elif(wristTemp>36):
     print("Your temperature is too high: ", wristTemp, " *C\n")
     print("Please stay where you are until someone comes to assist you\n")
+    notify.send('TEMP ALERT: ADDRESS IMMEDIATELY: Temperature: '+str(wristTemp)+' '+timeNow+' EST')
     #Gets current time
     #t = time.localtime()
     #timeNow = time.strftime("%H:%M:%S", t)
@@ -48,5 +50,6 @@ else:
     yellow.on()
     print("Your temperature is: ", wristTemp," *C\n")
     print("Thanks for cooperating with us, you may enter\n")
+    notify.send('Temperature: '+str(wristTemp)+' '+timeNow+' EST')
 time.sleep(5)
 bus.close()
