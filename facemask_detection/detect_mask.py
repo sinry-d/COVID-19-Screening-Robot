@@ -16,6 +16,8 @@ import time
 import cv2
 import os
 
+import warnings
+warnings.filterwarnings("ignore") # suppresses tensorflow warnings
 
 # hello this is lina
 def detect_and_predict_mask(frame, faceNet, maskNet):
