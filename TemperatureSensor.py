@@ -36,6 +36,7 @@ while (wristTemp<26 or wristTemp>43) and counter>0:
 print("")
 t = time.localtime()
 timeNow = time.strftime("%H:%M:%S", t)
+
 notification.message = "Testing: ", timeNow," EST"
 notification.send()
 if(wristTemp<30):
