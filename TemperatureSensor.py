@@ -33,6 +33,8 @@ print("")
 t = time.localtime()
 timeNow = time.strftime("%H:%M:%S", t)
 
+wristTemp = round (wristTemp, 2)
+
 #notification.message = "Testing: ", timeNow," EST"
 notification.send('Hello')
 if(wristTemp<30):
