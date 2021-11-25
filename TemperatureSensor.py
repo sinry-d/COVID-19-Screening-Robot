@@ -7,7 +7,8 @@ from mlx90614 import MLX90614
 from notify_run import Notify
 
 #Default notification settings for texts to your phone
-notification = Notify(
+notification = Notify
+(
    default_notification_title="Covid-Robot Alert",
    # default_application_name="Great Application",
    # default_notification_icon="path/to/icon.png",
@@ -37,8 +38,8 @@ print("")
 t = time.localtime()
 timeNow = time.strftime("%H:%M:%S", t)
 
-notification.message = "Testing: ", timeNow," EST"
-notification.send()
+#notification.message = "Testing: ", timeNow," EST"
+notification.send("Hello"); 
 if(wristTemp<30):
     yellow.on()
     print("Temperature too low: ", wristTemp, " *C \n")
