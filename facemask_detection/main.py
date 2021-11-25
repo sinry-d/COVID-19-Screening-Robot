@@ -6,7 +6,7 @@ current_capacity = 0
 goodtemp = False
 maskon = False
 
-print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n------------------------")
+print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n------------------------")
 print("COVID ROBOT:")
 print("------------------------")
 
