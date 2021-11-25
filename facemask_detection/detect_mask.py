@@ -159,14 +159,12 @@ def detectmask():
 				mask_on = True
 				print("the has_mask_counter has exeeded > 1")
 				print("we will break this loop")
-				return mask_on
-				#break
+				break
 			elif no_mask_counter >2:
 				mask_on = False
 				print("no_mask_counter has exeeded > 2")
 				print("we will break this loop")
-				return mask_on
-				#break
+				break
 			
 			# display the label and bounding box rectangle on the output
 			# frame
@@ -188,3 +186,4 @@ def detectmask():
 	# do a bit of cleanup
 	cv2.destroyAllWindows()
 	vs.stop()
+	return mask_on
