@@ -10,14 +10,16 @@ import time
 import cv2
 import os
 
-import tensorflow as tf
-tf.get_logger().setLevel('INFO')
-
+import tensorflow.python.util.deprecation as deprecation
+deprecation._PRINT_DEPRECATION_WARNINGS = False
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+import tensorflow as tf
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
+
+tf.logging.set_verbosity(tf.logging.ERROR)
 
 import warnings
-warnings.filterwarnings("ignore") # suppresses tensorflow warnings
+warnings.filterwarning
 
 def detect_and_predict_mask(frame, faceNet, maskNet):
 	# grab the dimensions of the frame and then construct a blob
