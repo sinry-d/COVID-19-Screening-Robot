@@ -30,7 +30,7 @@ print("")
 wristTemp = round(wristTemp,2)
 t = time.localtime()
 timeNow = time.strftime("%H:%M:%S", t)
-notify.send('Temperature: '+wristTemp+' '+timeNow+' EST')
+notify.send('Temperature: '+str(wristTemp)+' '+timeNow+' EST')
 if(wristTemp<30):
     yellow.on()
     print("Temperature too low: ", wristTemp, " *C \n")
