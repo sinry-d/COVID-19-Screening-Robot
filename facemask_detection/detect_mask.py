@@ -9,7 +9,6 @@ import imutils
 import time
 import cv2
 import os
-from termcolor import colored
 
 from tensorflow.python.util import deprecation
 deprecation._PRINT_DEPRECATION_WARNINGS = False
@@ -92,8 +91,7 @@ def detectmask():
 		help="minimum probability to filter weak detections")
 	args = vars(ap.parse_args())
 
-	print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-	print(colored("Loading the face mask detector...", 'red'))
+	print("Loading the face mask detector...")
 	print("")
 	# load our serialized face detector model from disk
 	# print("[INFO] loading face detector model...")
