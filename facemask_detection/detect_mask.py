@@ -9,12 +9,13 @@ import imutils
 import time
 import cv2
 import os
+from termcolor import colored
 
 from tensorflow.python.util import deprecation
 deprecation._PRINT_DEPRECATION_WARNINGS = False
-#import os
-#import tensorflow as tf
-#os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
+import os
+import tensorflow as tf
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 
 
 def detect_and_predict_mask(frame, faceNet, maskNet,args):
@@ -91,8 +92,8 @@ def detectmask():
 		help="minimum probability to filter weak detections")
 	args = vars(ap.parse_args())
 
-	print("")
-	print("Loading the face mask detector...")
+	print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+	print(colored("Loading the face mask detector...", 'red'))
 	print("")
 	# load our serialized face detector model from disk
 	# print("[INFO] loading face detector model...")
