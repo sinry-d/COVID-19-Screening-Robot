@@ -14,14 +14,14 @@ while True:
 
     if (maskon and goodtemp):
         if (current_capacity==max_capacity):
-            print (colored("Please wait for someone to leave before entering", red))
+            print (colored("Please wait for someone to leave before entering", 'red'))
         else:
-            print ("You are safe to enter")
+            print (colored("You are safe to enter"), 'green')
             current_capacity += 1
         maskon = False
         goodtemp = False
     else:
-        print ("You may not enter")
+        print (colored("You may not enter"), 'red')
         maskon = False
         goodtemp = False
 
