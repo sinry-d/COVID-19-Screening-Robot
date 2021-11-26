@@ -1,15 +1,11 @@
 import detect_mask
 import TemperatureSensor
+from termcolor import colored
 
 max_capacity = 2
 current_capacity = 0
 goodtemp = False
 maskon = False
-
-print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n------------------------")
-print("COVID ROBOT:")
-print("------------------------")
-
 
 while True:
     maskon = detect_mask.detectmask()
@@ -18,7 +14,7 @@ while True:
 
     if (maskon and goodtemp):
         if (current_capacity==max_capacity):
-            print ("Please wait for someone to leave before entering")
+            print (colored("Please wait for someone to leave before entering", red))
         else:
             print ("You are safe to enter")
             current_capacity += 1
