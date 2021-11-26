@@ -1,5 +1,4 @@
 from flask import Flask, render_template
-import functions
 import main
 
 app = Flask(__name__)
@@ -10,7 +9,7 @@ data = []
 @app.route('/')
 
 def table():
-    dataItem = functions.addData()
+    dataItem = main()
 
     data.append(dataItem)
 
