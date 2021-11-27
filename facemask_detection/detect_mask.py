@@ -12,9 +12,9 @@ import os
 
 from tensorflow.python.util import deprecation
 deprecation._PRINT_DEPRECATION_WARNINGS = False
-#import os
-#import tensorflow as tf
-#os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
+import os
+import tensorflow as tf
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 
 
 def detect_and_predict_mask(frame, faceNet, maskNet,args):
@@ -91,19 +91,21 @@ def detectmask():
 		help="minimum probability to filter weak detections")
 	args = vars(ap.parse_args())
 
+	print("Loading the face mask detector...")
+	print("")
 	# load our serialized face detector model from disk
-	print("[INFO] loading face detector model...")
+	# print("[INFO] loading face detector model...")
 	prototxtPath = os.path.sep.join([args["face"], "deploy.prototxt"])
 	weightsPath = os.path.sep.join([args["face"],
 		"res10_300x300_ssd_iter_140000.caffemodel"])
 	faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 
 	# load the face mask detector model from disk
-	print("[INFO] loading face mask detector model...")
+	# print("[INFO] loading face mask detector model...")
 	maskNet = load_model(args["model"])
 
 	# initialize the video stream and allow the camera sensor to warm up
-	print("[INFO] starting video stream...")
+	# print("[INFO] starting video stream...")
 	#vs = VideoStream(src=0).start()
 	vs = VideoStream(usePiCamera=True).start()
 	time.sleep(2.0)
@@ -147,13 +149,13 @@ def detectmask():
 				color = (0, 255, 0)
 				hasMask = True
 				has_mask_counter += 1
-				print("has mask", has_mask_counter)
+				# print("has mask", has_mask_counter)
 			else:
 				label = "No Face Mask Detected"
 				color = (0, 0, 255)
 				hasMask = False
 				no_mask_counter += 1
-				print ("has no mask", no_mask_counter)
+				# print ("has no mask", no_mask_counter)
 			
 			#if (not) wearing a mask is confirmed, break the for
 			if has_mask_counter > 1:
@@ -169,13 +171,13 @@ def detectmask():
 		
 		if has_mask_counter > 1:
 			mask_on = True
-			print("the has_mask_counter has exeeded > 1")
-			print("we will break this loop")
+			# print("the has_mask_counter has exeeded > 1")
+			# print("we will break this loop")
 			break
 		elif no_mask_counter >2:
 			mask_on = False
-			print("no_mask_counter has exeeded > 2")
-			print("we will break this loop")
+			# print("no_mask_counter has exeeded > 2")
+			print("Please wear a mask properly")
 			break
 
 
