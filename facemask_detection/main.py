@@ -16,19 +16,19 @@ while True:
     if (maskon and goodtemp):
         if (current_capacity==max_capacity):
             cprint("\n##           ##\n ##         ##\n  ##       ##\n   ##     ##\n    ##   ##\n     ## ##\n      ##\n     ## ##\n    ##   ##\n   ##     ##\n  ##       ##\n ##         ##\n##           ##", 'red')
-            cprint("Please wait for someone to leave before entering", 'red')
+            cprint("\nPlease wait for someone to leave before entering", 'red')
         else:
             cprint("                       ##\n                      ##\n                     ##\n                    ##\n                   ##\n                  ##\n                 ##\n                ##\n               ##\n ##           ##\n  ##         ##\n   ##       ##\n    ##     ##\n     ##   ## \n      ## ##\n       ##", 'green')
-            cprint("You are safe to enter", 'green')
+            cprint("\nYou are safe to enter", 'green')
             current_capacity += 1
         maskon = False
         goodtemp = False
     else:
         cprint("\n##           ##\n ##         ##\n  ##       ##\n   ##     ##\n    ##   ##\n     ## ##\n      ##\n     ## ##\n    ##   ##\n   ##     ##\n  ##       ##\n ##         ##\n##           ##", 'red')
-        cprint("You may not enter", 'red')
+        cprint("\nYou may not enter", 'red')
         maskon = False
         goodtemp = False
 
-    print("\n\n\n")
+    print("\n")
 
 
