@@ -91,6 +91,7 @@ def detectmask():
 		help="minimum probability to filter weak detections")
 	args = vars(ap.parse_args())
 
+	print("")
 	print("Loading the face mask detector...")
 	print("")
 	# load our serialized face detector model from disk
